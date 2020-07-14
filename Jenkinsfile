@@ -5,11 +5,8 @@ node()
             checkout scm
         }
     }
-        
-    stage('Install dependencies') 
-    {
-        nodejs('nodejs') 
-        {
+    stage('Install dependencies') {
+        nodejs('nodejs') {
             sh 'npm install'
             echo "Modules installed"
         }
