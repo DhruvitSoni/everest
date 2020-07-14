@@ -1,39 +1,34 @@
-node(){
-    stage('Cloning Git') {
-        checkout scm
-    }
-        
-    stage('Install dependencies') {
-        nodejs('nodejs') {
-            sh 'npm install'
-            echo "Modules installed"
+node()
+    {
+    stage('Cloning Git')
+        {
+            checkout scm
         }
         
-    }
-    stage('Build') {
-        nodejs('nodejs') {
+    stage('Install dependencies') 
+        {
+            nodejs('nodejs') 
+            {
+                sh 'npm install'
+                echo "Modules installed"
+            }
+        }
+    stage('Build') 
+    {
+        nodejs('nodejs') 
+        {
             sh 'npm run build'
             echo "Build completed"
+        }   
+    }
+    stage('Package Build') 
+        {
+            sh "tar -zcvf bundle.tar.gz dist/automationdemo/"
         }
-        
-    }
-
-    stage('Package Build') {
-        sh "tar -zcvf bundle.tar.gz dist/automationdemo/"
-    }
-
-    stage('Artifacts Creation') {
-        fingerprint 'bundle.tar.gz'
-        archiveArtifacts 'bundle.tar.gz'
-        echo "Artifacts created"
-    }
-
-    stage('Stash changes') {
-        stash allowEmpty: true, includes: 'bundle.tar.gz', name: 'buildArtifacts'
-    }
 }
 
-node('awsnode') {
+node('awsnode') 
+{
     echo 'Unstash'
     unstash 'buildArtifacts'
     echo 'Artifacts copied'
