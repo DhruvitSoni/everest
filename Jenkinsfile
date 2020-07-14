@@ -2,6 +2,7 @@ node(){
     stage('Cloning Git') {
         checkout scm
     }
+}
         
     stage('Install dependencies') {
         nodejs('nodejs') {
@@ -21,8 +22,6 @@ node(){
     stage('Package Build') {
         sh "tar -zcvf bundle.tar.gz dist/automationdemo/"
     }
-
- 
 
 node('awsnode') {
     echo 'Unstash'
