@@ -22,16 +22,6 @@ node(){
         sh "tar -zcvf bundle.tar.gz dist/automationdemo/"
     }
 
-    stage('Artifacts Creation') {
-        fingerprint 'bundle.tar.gz'
-        archiveArtifacts 'bundle.tar.gz'
-        echo "Artifacts created"
-    }
-
-    stage('Stash changes') {
-        stash allowEmpty: true, includes: 'bundle.tar.gz', name: 'buildArtifacts'
-    }
-}
 
 node('angnode') {
     echo 'Unstash'
