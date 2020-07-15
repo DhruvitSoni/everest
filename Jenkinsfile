@@ -10,7 +10,6 @@ node(){
     }
     stage('Build') {
         nodejs('nodejs') {
-            sh 'npm run build'
         }
         
     }
