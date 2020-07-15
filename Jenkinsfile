@@ -20,9 +20,7 @@ node(){
         
     }
 
-    stage('Package Build') {
-        sh "tar -zcvf bundle.tar.gz dist/automationdemo/"
-    }
+    
 
     stage('Artifacts Creation') {
         fingerprint 'bundle.tar.gz'
