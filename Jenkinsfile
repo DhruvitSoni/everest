@@ -33,7 +33,7 @@ node(){
     }
 }
 
-node('ngnode') {
+node('angnode') {
     echo 'Unstash'
     unstash 'buildArtifacts'
     echo 'Artifacts copied'
